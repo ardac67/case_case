@@ -138,3 +138,4 @@ C:\Users\ardac\OneDrive\Masaüstü\zart_challenge\initproject\bin\Debug\net8.0\t
 C:\Users\ardac\OneDrive\Masaüstü\zart_challenge\initproject\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\ardac\OneDrive\Masaüstü\zart_challenge\initproject\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\ardac\OneDrive\Masaüstü\zart_challenge\initproject\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\ardac\OneDrive\Masaüstü\zart_challenge\initproject\obj\Debug\net8.0\initproject.sourcelink.json

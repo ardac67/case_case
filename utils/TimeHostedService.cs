@@ -28,33 +28,44 @@ public class ListenerThread : IHostedService, IDisposable
             using (var httpClient = _httpClientFactory.CreateClient())
             {
                 Env.Load();
-                var response = await httpClient.GetAsync(Environment.GetEnvironmentVariable("ROUTE") +"?api_key=" + Environment.GetEnvironmentVariable("APIKEY") + "&language=en-US&page=1");
-                response.EnsureSuccessStatusCode();
-                var data = await response.Content.ReadAsStringAsync();
-                var movieResponse = JsonConvert.DeserializeObject<FilmGetDto>(data);
-                if(movieResponse != null)
+                List<Film> films = new List<Film>();
+                string maxPageStr = Environment.GetEnvironmentVariable("MAX_PAGE");
+                int maxPage = 1;
+                if (!int.TryParse(maxPageStr, out maxPage))
                 {
-                    List<Film> films = movieResponse.Results.Select(dto => new Film
-                    {
-                        Id = Guid.NewGuid(),
-                        Adult = dto.Adult,
-                        BackdropPath = dto.backdrop_path,
-                        GenreIds = dto.genre_ids,
-                        OriginalLanguage = dto.original_language,
-                        OriginalTitle = dto.original_title,
-                        Overview = dto.overview,
-                        Popularity = dto.popularity,
-                        PosterPath = dto.poster_path,
-                        ReleaseDate = dto.release_date,
-                        Title = dto.title,
-                        Video = dto.Video,
-                        VoteAverage = dto.vote_average,
-                        VoteCount = dto.vote_count
-                    }).ToList();
-                    db.AddRange(films);
-                    await db.SaveChangesAsync(); 
+                    maxPage = 5;
                 }
+
+                for(int i =0 ; i < maxPage; i++){
+                    var response = await httpClient.GetAsync(Environment.GetEnvironmentVariable("ROUTE") +"?api_key=" + Environment.GetEnvironmentVariable("APIKEY") + "&language=en-US&page=1");
+                    response.EnsureSuccessStatusCode();
+                    var data = await response.Content.ReadAsStringAsync();
+                    var movieResponse = JsonConvert.DeserializeObject<FilmGetDto>(data);
+                    if(movieResponse != null)
+                    {
+                        films.AddRange(movieResponse.Results.Select(dto => new Film
+                        {
+                            Id = Guid.NewGuid(),
+                            Adult = dto.Adult,
+                            BackdropPath = dto.backdrop_path,
+                            GenreIds = dto.genre_ids,
+                            OriginalLanguage = dto.original_language,
+                            OriginalTitle = dto.original_title,
+                            Overview = dto.overview,
+                            Popularity = dto.popularity,
+                            PosterPath = dto.poster_path,
+                            ReleaseDate = dto.release_date,
+                            Title = dto.title,
+                            Video = dto.Video,
+                            VoteAverage = dto.vote_average,
+                            VoteCount = dto.vote_count
+                        }).ToList());
+                    }
+                }
+                db.AddRange(films);
+                await db.SaveChangesAsync();
             }
+ 
         }
     }
 
