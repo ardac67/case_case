@@ -24,6 +24,7 @@ builder.Services.AddIdentityApiEndpoints<IdentityUser>()
 .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddScoped<IFilmRepository, FilmRepository>();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

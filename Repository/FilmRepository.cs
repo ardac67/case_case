@@ -13,4 +13,10 @@ public class FilmRepository : IFilmRepository
     {
         return db.Films.ToListAsync();
     }
+
+    public async Task SaveAsync(Comments comment)
+    {
+        db.Comments.Add(comment);
+        await db.SaveChangesAsync();
+    }
 }

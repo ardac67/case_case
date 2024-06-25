@@ -20,7 +20,7 @@ public class FilmController: ControllerBase
     [HttpGet]
     public IActionResult GetFilms()
     {
-        Console.WriteLine(userManager.GetUserId(User));
+        //Console.WriteLine(userManager.GetUserId(User));
         return Ok(filmRepository.GetAllAsync().Result);
     }
 }
