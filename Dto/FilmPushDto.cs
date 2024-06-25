@@ -15,4 +15,5 @@ public class FilmPushDto
     public double vote_average { get; set; }
     public int vote_count { get; set; }
 
+
 }

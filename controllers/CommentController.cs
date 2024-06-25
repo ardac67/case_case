@@ -30,6 +30,6 @@ public class CommentController: ControllerBase
             return BadRequest("Invalid user id");
         }  
         await filmRepository.SaveAsync(comment);  
-        return Ok(comment);
+        return StatusCode(200,comment);
     }
 }

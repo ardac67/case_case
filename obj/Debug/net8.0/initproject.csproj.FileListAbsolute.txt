@@ -145,3 +145,6 @@ C:\Users\ardac\OneDrive\Masaüstü\zart_challenge\initproject\bin\Debug\net8.0\M
 C:\Users\ardac\OneDrive\Masaüstü\zart_challenge\initproject\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\ardac\OneDrive\Masaüstü\zart_challenge\initproject\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\ardac\OneDrive\Masaüstü\zart_challenge\initproject\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\ardac\OneDrive\Masaüstü\zart_challenge\initproject\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\ardac\OneDrive\Masaüstü\zart_challenge\initproject\bin\Debug\net8.0\MailKit.dll
+C:\Users\ardac\OneDrive\Masaüstü\zart_challenge\initproject\bin\Debug\net8.0\MimeKit.dll

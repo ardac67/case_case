@@ -1,8 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using DotNetEnv;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.Net.Http;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +16,7 @@ builder.Services.AddHostedService<ListenerThread>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAuthorization();
+builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 
 builder.Services.AddIdentityApiEndpoints<IdentityUser>()
 .AddEntityFrameworkStores<AppDbContext>();

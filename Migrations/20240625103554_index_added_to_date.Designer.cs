@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace initproject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240625103554_index_added_to_date")]
+    partial class index_added_to_date
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,6 +63,7 @@ namespace initproject.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("BackdropPath")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GenreIds")
@@ -81,6 +85,7 @@ namespace initproject.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("PosterPath")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ReleaseDate")
@@ -102,11 +107,8 @@ namespace initproject.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Id")
-                        .HasDatabaseName("IX_Film_Id");
-
                     b.HasIndex("ReleaseDate")
-                        .HasDatabaseName("IX_Film_ReleaseDate");
+                        .HasDatabaseName("test_db");
 
                     b.ToTable("Films");
                 });
