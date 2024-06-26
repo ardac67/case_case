@@ -20,16 +20,21 @@ public class CommentController: ControllerBase
     [HttpPost]
     public async Task<IActionResult> PostComment([FromBody] CommentDto cDto)
     {
-        var comment = cDto.ParseComment();
-        var user_id = userManager.GetUserId(User);
-        if (Guid.TryParse(user_id, out Guid userId))
-        {
-            comment.UserId = userId;
-        }    
-        else {
-            return BadRequest("Invalid user id");
-        }  
-        await filmRepository.SaveAsync(comment);  
-        return StatusCode(200,comment);
+        if(ModelState.IsValid){
+            var comment = cDto.ParseComment();
+            var user_id = userManager.GetUserId(User);
+            if (Guid.TryParse(user_id, out Guid userId))
+            {
+                comment.UserId = userId;
+            }    
+            else {
+                return BadRequest("Invalid user id");
+            }  
+
+            await filmRepository.SaveAsync(comment);  
+            return StatusCode(200,comment);
+        }
+        return BadRequest(ModelState);
+
     }
 }

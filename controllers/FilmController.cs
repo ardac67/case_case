@@ -86,21 +86,6 @@ public class FilmController: ControllerBase
         }
     }
 
-   /*  [HttpPost]
-    public async Task<IActionResult> sendSuggestion([FromBody] SuggestionDt sDto)
-    {
-        var comment = cDto.ParseComment();
-        var user_id = userManager.GetUserId(User);
-        if (Guid.TryParse(user_id, out Guid userId))
-        {
-            comment.UserId = userId;
-        }    
-        else {
-            return BadRequest("Invalid user id");
-        }  
-        await filmRepository.SaveAsync(comment);  
-        return StatusCode(200,comment);
-    } */
     [HttpPost("sendSuggestion")]
     public async Task<IActionResult> SendEmail([FromBody] EmailRequest request)
     {
