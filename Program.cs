@@ -30,6 +30,12 @@ builder.Services.AddRateLimiter(optionsOfLimiter => {
         param.SegmentsPerWindow = 1;
     }).RejectionStatusCode = 429;
 });
+builder.Services.AddOutputCache( a =>{
+    //global policy
+    a.AddBasePolicy(x => x.Expire(TimeSpan.FromMinutes(2)));
+    //custom policy
+    a.AddPolicy("GetFilms", x => x.Expire(TimeSpan.FromMinutes(1)));
+});
 
 var app = builder.Build();
 
@@ -41,7 +47,9 @@ if (app.Environment.IsDevelopment())
 app.UseMiddleware<GlobalCatchMiddleware>();
 //enable for entire app limit
 app.UseRateLimiter();
+app.UseOutputCache();
 app.MapIdentityApi<IdentityUser>();
 app.UseHttpsRedirection();
 app.MapControllers();
+
 app.Run();

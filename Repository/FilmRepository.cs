@@ -33,6 +33,7 @@ public class FilmRepository : IFilmRepository
                         .ToListAsync();
     }
 
+
     public Task<List<Film>> GetFilmsByNameAsync(string Name)
     {
         return db.Films.Include(f=> f.comments).Where(f => f.Title.Equals(Name)).ToListAsync();

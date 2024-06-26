@@ -3,6 +3,7 @@ using MailKit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OutputCaching;
 
 
 [Route("/films")]
@@ -51,6 +52,7 @@ public class FilmController: ControllerBase
 
 
     [HttpGet("search")]
+    [OutputCache(PolicyName="GetFilms")]
     public async Task<IActionResult> getFilmsByName([FromQuery] string filmTitle = ""){
         var films = await filmRepository.GetFilmsByNameAsync(filmTitle);
         var filmDtos = films.Select(f => new FilmDto
