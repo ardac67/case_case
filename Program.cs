@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 Env.Load();
-var conString = Environment.GetEnvironmentVariable("Conn");
+var conString = Environment.GetEnvironmentVariable("DockerConn");
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(conString);
