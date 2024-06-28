@@ -18,6 +18,9 @@ dotnet run
 > **Note:** Project live at [https://case-case.onrender.com](https://case-case.onrender.com) but can be slow if not accessed for a while due to free account limitations.
 > 
 > **Documentation:** [https://documenter.getpostman.com/view/28660570/2sA3dsnZqr](https://documenter.getpostman.com/view/28660570/2sA3dsnZqr).
+>
+> **Note:** There is a service inside utils folder that gets the upcoming movies from 12 hour based interval and insert them into db.
+>
 
 ### Running with Docker
 
